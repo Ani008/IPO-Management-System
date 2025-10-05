@@ -1,15 +1,20 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react';
 import LoginPage from './pages/LoginPage';
+import IPODashboard from './pages/IPODashboard'; // <-- make sure file name matches
+import './style/IPODashboard.css'; // <-- import CSS for styling
 
 function App() {
-  const [count, setCount] = useState(0)
+  // For now, show the IPO Dashboard directly.
+  // Later you can use login logic to toggle between pages.
+  const [page, setPage] = useState('dashboard'); 
 
   return (
     <>
-      <LoginPage />
+      {page === 'login' && <LoginPage />}
+      {page === 'admin' && <AdminLoginPage />}
+      {page === 'dashboard' && <IPODashboard />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
