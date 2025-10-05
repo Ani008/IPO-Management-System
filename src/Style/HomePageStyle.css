@@ -1,0 +1,303 @@
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        :root {
+            --color-primary: #3b82f6; /* Blue */
+            --color-secondary: #e0f2fe; /* Light Blue */
+            --color-text-dark: #1f2937;
+            --color-text-light: #6b7280;
+            --color-background: #f3f4f6;
+            --color-white: #ffffff;
+            --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ----------------------- HEADER ----------------------- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--color-white);
+            box-shadow: var(--shadow-subtle);
+            border-bottom: 1px solid #e5e7eb;
+            width: 1450px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--color-primary);
+        }
+
+        .app-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-text-dark);
+        }
+
+        .btn-logout {
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            color: var(--color-text-light);
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .btn-logout:hover {
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        /* ----------------------- MAIN CONTENT ----------------------- */
+        .main-content-area {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        /* Mobile layout (Stack columns) */
+        @media (max-width: 1024px) {
+            .main-content-area {
+                flex-direction: column;
+            }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        /* Form Card Styling */
+        .form-card {
+            flex: 1 1 40%; /* Takes about 40% of the space on desktop */
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-subtle);
+           
+        }
+
+        .ipo-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .input-label {
+            font-weight: 600;
+            color: var(--color-text-dark);
+            margin-top: 0.5rem;
+        }
+
+        .input-field {
+            padding: 0.65rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        
+        .input-group-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .input-group-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .input-group-col .input-label {
+            margin-top: 0;
+        }
+        
+        /* File Upload Styling */
+        .file-upload-box {
+            border: 2px dashed #d1d5db;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            background-color: #fcfcfc;
+            margin-bottom: 1rem;
+        }
+
+        .file-upload-box:hover {
+            border-color: var(--color-primary);
+        }
+
+        .file-input-hidden {
+            display: none;
+        }
+
+        .file-upload-label {
+            display: block;
+            cursor: pointer;
+        }
+        
+        .upload-icon {
+            width: 40px;
+            height: 40px;
+            color: var(--color-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .file-upload-text {
+            display: block;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .file-upload-subtext {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            margin-top: 0.25rem;
+        }
+
+        .btn-submit {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.4);
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            background-color: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .message {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        .success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Table Card Styling */
+        .table-card {
+            flex: 1 1 60%; /* Takes about 60% of the space on desktop */
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-subtle);
+            width: 100%;
+        }
+
+        .applications-table {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .table-header, .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr; /* Matches the columns in the design */
+            padding: 0.75rem 0;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .table-header {
+            font-weight: 600;
+            color: var(--color-text-dark);
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .table-row {
+            border-bottom: 1px solid #f3f4f6;
+            color: var(--color-text-light);
+        }
+
+        .col {
+            padding: 0 0.5rem;
+        }
+
+        .status-badge {
+            padding: 0.3rem 0.6rem;
+            border-radius: 9999px; /* Pill shape */
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 2rem;
+            color: var(--color-text-light);
+            font-style: italic;
+        }
+        
+        /* Mobile Table Adjustments */
+        @media (max-width: 600px) {
+            .table-header, .table-row {
+                grid-template-columns: 1.5fr 1fr 1fr;
+                font-size: 0.9rem;
+            }
+            .header, .main-content-area, .form-card, .table-card {
+                padding: 1rem;
+            }
+            .section-title {
+                font-size: 1.25rem;
+            }
+        }
