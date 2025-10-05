@@ -1,20 +1,17 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LoginPage from './pages/LoginPage';
-import HomePage from './pages/HomePage';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // For now, show the IPO Dashboard directly.
+  // Later you can use login logic to toggle between pages.
+  const [page, setPage] = useState('dashboard'); 
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/homepage" element={<HomePage />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <LoginPage />
+    </>
   )
 }
 
-export default App
+export default App;
