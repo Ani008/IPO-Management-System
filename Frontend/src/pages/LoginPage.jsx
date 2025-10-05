@@ -14,17 +14,16 @@ const withRetry = async (fn, retries = 3) => {
   }
 };
 
-// Main App Component
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  // --- Backend Integration Placeholder Functions ---
-
+  // --- Handle Login ---
   const handleLogin = async (e) => {
     e.preventDefault();
+
     if (!email || !password) {
       setMessage('Please enter both email and password.');
       return;
@@ -33,28 +32,33 @@ const LoginPage = () => {
     setLoading(true);
     setMessage('');
 
-    // --- Backend Space (SQL/API Integration Point) ---
     try {
-      // ** 1. API Call (Replace with your actual backend/SQL endpoint) **
-      const apiCall = () => fetch('/api/login', {
+      // API Call with retry logic
+      const apiCall = () => fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      
-      // We wrap the API call with retry logic for robustness
-      // const response = await withRetry(apiCall);
-      // const data = await response.json();
 
-      // Placeholder simulation of a successful login
-      await new Promise(resolve => setTimeout(resolve, 1500)); 
-      console.log(`Attempting login for: ${email}`);
-      
-      setMessage('Login successful! Redirecting...');
-      // In a real app, you would save auth token here and redirect
-      
+      const response = await withRetry(apiCall);
+      const data = await response.json();
+
+      if (!response.ok) {
+        setMessage(data.message || 'Login failed. Please try again.');
+      } else {
+        // Store JWT and user info
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+
+        setMessage('Login successful! Redirecting...');
+        
+        // Redirect to Homepage.jsx
+        setTimeout(() => {
+          window.location.href = '/mainpage';
+        }, 1000);
+      }
+
     } catch (error) {
-      // In a real app, you would show the error response from the server
       console.error('Login error:', error);
       setMessage('Login failed. Please check your credentials.');
     } finally {
@@ -62,11 +66,9 @@ const LoginPage = () => {
     }
   };
 
+  // --- Handle Register (placeholder) ---
   const handleRegister = async () => {
-    // This is typically a link to a /register page, 
-    // but here we simulate a quick action.
     setMessage('Redirecting to Registration Page...');
-    // In a real app, you would use a router or window.location.href
     await new Promise(resolve => setTimeout(resolve, 800)); 
     setMessage('Registration is not implemented in this demo.');
   };
@@ -102,23 +104,18 @@ const LoginPage = () => {
             />
             
             <button 
-              type="submit" 
-              disabled={loading}
-              className="btn btn-primary"
-            >
-              {loading ? 'Logging In...' : 'Login'}
-            </button>
-            
-            <button 
               type="button" 
-              onClick={handleRegister}
-              className="btn btn-secondary"
-            >
+              onClick={handleLogin}
+              className="btn btn-secondary">
               Register
             </button>
           </form>
 
-          {message && <p className={`message ${message.includes('successful') ? 'success' : 'error'}`}>{message}</p>}
+          {message && (
+            <p className={`message ${message.includes('successful') ? 'success' : 'error'}`}>
+              {message}
+            </p>
+          )}
         </div>
         
         {/* Right Side: Graphic/Visual */}
@@ -130,7 +127,7 @@ const LoginPage = () => {
         </div>
 
       </div>
-      </div>
+    </div>
   );
 };
 

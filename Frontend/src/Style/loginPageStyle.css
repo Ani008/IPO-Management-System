@@ -30,6 +30,7 @@
             width: 800px;
             height: 600px;
             transition: all 0.3s ease-in-out;
+            color: black;
         }
 
         /* Responsive Breakpoint for Mobile (Stacked Layout) */
@@ -85,6 +86,7 @@
             font-size: 1rem;
             transition: all 0.2s;
             box-shadow: var(--shadow-subtle);
+            color: black;
         }
 
         .input-field:focus {
